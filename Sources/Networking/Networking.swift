@@ -3,18 +3,18 @@
 
 import Foundation
 
-enum NetworkError: Error {
+public enum NetworkError: Error {
     case invalidURL
     case invalidResponse
     case decodingError
 }
 
-class NetworkManager {
+public class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
     
-    func request<T: Decodable>(url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
+    public func request<T: Decodable>(url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
